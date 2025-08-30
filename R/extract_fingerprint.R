@@ -85,10 +85,10 @@ extract_fingerprint <- function(df, fingerprint_id = NULL) {
   # Assemble the final, single-row fingerprint
   fingerprint <- tibble::tibble(
     fingerprint_id = fingerprint_id,
-    `Abundance–Fitness Slope` = slope_no_stress,
+    `Abundance_Fitness Slope` = slope_no_stress,
     `Stress Response` = slope_stress - slope_no_stress,
     `Interaction Strength (R-squared)` = metric_interaction_strength, # Use the new, correct value
-    `Diversity–Fitness Link` = NA_real_,
+    `Diversity_Fitness Link` = NA_real_,
     `Functional Redundancy` = NA_real_,
     mechanism_observed = mechanism_observed
   ) %>%
