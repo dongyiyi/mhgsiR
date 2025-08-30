@@ -40,12 +40,8 @@ jobs:
         with:
           cache: true
           needs: check
-          extra-packages: |
-            any::rcmdcheck
-            github::ricardo-bion/ggradar   
+          extra-packages: any::rcmdcheck   
 
       - uses: r-lib/actions/check-r-package@v2
         with:
-          upload-snapshots: true
-        env:
-          R_CHECK_FORCE_SUGGESTS: false     
+          upload-snapshots: true    
