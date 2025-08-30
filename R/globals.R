@@ -14,3 +14,10 @@
   "Diversity–Fitness Link",
   "Functional Redundancy"
 )
+
+utils::globalVariables(c(
+  "similarity_score","Mechanism","mechanism","mechanism_observed",
+  "avg_rank_agreement","condition","data","stats","where",
+  "value","metric","value_scaled","abundance","fitness",
+  "host_id"
+))
