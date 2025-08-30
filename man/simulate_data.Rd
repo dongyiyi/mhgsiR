@@ -52,6 +52,6 @@ core mechanistic archetypes.
 \examples{
 # Simulate and pipe directly to a plot without printing the data
 simulate_data(mechanism = "Defensive", seed = 42, return_invisible = TRUE) |>
-  ggplot2::ggplot(aes(x = abundance, y = fitness)) +
+  ggplot2::ggplot(ggplot2::aes(x = abundance, y = fitness)) +
   ggplot2::geom_point()
 }
