@@ -24,6 +24,7 @@ Imports:
     tidyr,
     tibble,
     rlang,
+    purrr,
     stats,
     utils,
     methods,
@@ -34,3 +35,4 @@ Config/testthat/edition: 3
 NeedsCompilation: no
 Author: Yiyi Dong [aut, cre]
 Maintainer: Yiyi Dong <dongyiyi09@hotmail.com>
+
