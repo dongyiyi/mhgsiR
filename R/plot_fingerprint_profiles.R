@@ -18,7 +18,7 @@ plot_fingerprint_profiles <- function(fingerprint_df) {
   # --- Input Validation & Preparation ---
   # (This part is correct and remains the same)
   metric_cols <- c(
-    "Abundance_Fitness Slope", "Stress Response", "Interaction Strength (R-squared)",
+    "Abundance_Fitness Slope", "Stress Response", "Interaction Strength (R_squared)",
     "Diversity_Fitness Link", "Functional Redundancy"
   )
   if (!all(metric_cols %in% names(fingerprint_df))) {
