@@ -25,7 +25,7 @@ extract_fingerprint_batch <- function(mechanisms = c("Nutritional", "Defensive",
 
     # These are the direct mathematical consequences of our model's parameters
     reference_library <- tibble::tribble(
-      ~fingerprint_id, ~`Abundance–Fitness Slope`, ~`Stress Response`, ~`Interaction Strength (R-squared)`, ~`Diversity–Fitness Link`, ~`Functional Redundancy`, ~mechanism_observed,
+      ~fingerprint_id, ~`Abundance_Fitness Slope`, ~`Stress Response`, ~`Interaction Strength (R-squared)`, ~`Diversity_Fitness Link`, ~`Functional Redundancy`, ~mechanism_observed,
       "ref_Nutritional",                      0.0,               0.6,                                 1.0,                     NA,                      NA,       "Nutritional",
       "ref_Defensive",                       -0.1,               0.8,                                 1.0,                     NA,                      NA,         "Defensive",
       "ref_Neutral",                          0.0,               0.0,                                 0.0,                     NA,                      NA,           "Neutral",
