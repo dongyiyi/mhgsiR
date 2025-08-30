@@ -1,6 +1,9 @@
 # mhgsiR
 *From Stories to Signatures: A Framework for Inferring Symbiotic Processes*
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/dongyiyi/mhgsiR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dongyiyi/mhgsiR/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 `mhgsiR` is an R package for **simulating, extracting, and diagnosing macro-fingerprints** of host–symbiont interactions.  
 It translates ecological *stories* into standardized, diagnosable **signatures**, enabling mechanism inference, comparison, and robustness analysis.
