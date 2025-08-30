@@ -19,19 +19,16 @@ Depends:
 Imports:
     dplyr,
     ggplot2,
-    magrittr,
     patchwork,
     tidyr,
     tibble,
     rlang,
     stats,
     utils,
-    methods
+    methods,
+    scales
 Suggests:
-    testthat (>= 3.0.0),
-    ggradar
-Remotes:
-    ricardo-bion/ggradar
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
 Author: Yiyi Dong [aut, cre]
