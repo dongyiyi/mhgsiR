@@ -12,7 +12,7 @@
   na_strategy <- match.arg(na_strategy)
   metric_names <- .mhgsi_metric_names
 
-  # --- (B) Mechanism 兼容处理 ---
+  # --- (B) Mechanism  ---
   if (!"Mechanism" %in% names(reference_library)) {
     alt <- c("mechanism_observed","mechanism","mechanism_name")
     hit <- alt[alt %in% names(reference_library)][1]
@@ -22,17 +22,17 @@
       stop("`reference_library` must contain a `Mechanism` (or legacy) column.", call. = FALSE)
     }
   }
-  # 输入校验
+  # 
   if (!all(metric_names %in% names(observed_fingerprint)) ||
       !all(metric_names %in% names(reference_library))) {
     stop("Inputs must contain all 5 core metric columns.", call. = FALSE)
   }
 
-  # 数据准备
+  # 
   observed_vec     <- as.numeric(observed_fingerprint[1, metric_names])
   reference_matrix <- as.matrix(reference_library[, metric_names, drop = FALSE])
 
-  # --- 更稳健：把 NA/NaN/Inf 都视作“不可用” ---
+  # 
   is_finite_obs     <- is.finite(observed_vec)
   is_finite_ref_col <- apply(is.finite(reference_matrix), 2, all)
 
@@ -50,7 +50,7 @@
     used_metrics           <- metric_names
   }
 
-  # 可选 z-score
+  #  z-score
   if (isTRUE(allow_rescale)) {
     cm <- rbind(observed_vec_clean, reference_matrix_clean)
     sm <- scale(cm); sm[is.nan(sm)] <- 0
@@ -58,7 +58,7 @@
     reference_matrix_clean <- sm[-1, , drop = FALSE]
   }
 
-  # 相似度
+  # 
   cosine_sim <- function(a,b){
     d <- sqrt(sum(a^2)) * sqrt(sum(b^2))
     if (d < .Machine$double.eps) return(0)
@@ -222,7 +222,7 @@ diagnose_mechanism_dual <- function(observed_fingerprint,
     if (a > b) "cor_spearman" else if (a < b) "cor_pearson" else default
   }
 
-  # 用 -Inf 代替 NA，保证 max/排序能工作（不覆盖原值时可复制向量）
+  # 
   avg_agreement_f <- avg_agreement
   avg_agreement_f[is.na(avg_agreement_f)] <- -Inf
 
@@ -239,14 +239,14 @@ diagnose_mechanism_dual <- function(observed_fingerprint,
     pick_reason <- "Methods disagreed with ≤3 metrics; cosine is more robust for low-dimensional fingerprints."
 
   } else {
-    # 先在有限值里挑最高一致性的候选；若全是 -Inf（原本是 NA），退回全体
+    # 
     candidates <- names(avg_agreement_f)[is.finite(avg_agreement_f)]
     if (length(candidates) == 0) candidates <- names(avg_agreement_f)
 
     tied <- candidates[avg_agreement_f[candidates] == max(avg_agreement_f[candidates], na.rm = TRUE)]
 
     if (length(tied) > 1) {
-      # 用 Top-1 margin 打破平手；仍平手则优先 spearman
+      # 
       margins <- top1_margin[tied]
       tied <- tied[margins == max(margins, na.rm = TRUE)]
       if (length(tied) > 1 && "cor_spearman" %in% tied) tied <- "cor_spearman"
@@ -255,7 +255,7 @@ diagnose_mechanism_dual <- function(observed_fingerprint,
     pick_reason <- "Methods disagreed; picked highest average rank agreement (NA-safe; tie→larger Top-1 margin, then spearman)."
   }
 
-  # 映射为最终 method / correlation_type
+  # 
   if (pick_name %in% c("cor_pearson","cor_spearman")) {
     pick_method <- "correlation"
     pick_corr   <- if (pick_name == "cor_pearson") "pearson" else "spearman"
