@@ -1,8 +1,7 @@
 #' Reference Fingerprints for Mechanistic Archetypes
 #'
 #' Idealized, noise-free macro-fingerprint profiles for four archetypes
-#' (Defensive, Nutritional, FreeRider, Neutral). Used by default as the
-#' comparison library in `diagnose_mechanism_dual()`.
+#' (Defensive, Nutritional, FreeRider, Neutral). 
 #'
 #' @format A data frame with 4 rows and 7 columns:
 #' \describe{
