@@ -65,7 +65,7 @@ plot_fingerprint_profiles <- function(fingerprint_df) {
     ggplot2::geom_col(ggplot2::aes(fill = value > 0), alpha = 0.9, width = 0.7) +
     ggplot2::geom_vline(xintercept = 0, linetype = "dashed", color = "black", linewidth = 0.8) +
     ggplot2::geom_text(
-      aes(label = round(value, 2),
+      ggplot2::aes(label = round(value, 2),
           x = value_scaled + ifelse(value > 0, 0.02, -0.02),
           hjust = ifelse(value > 0, 0, 1)),
       size = 3.5
