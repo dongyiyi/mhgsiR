@@ -1,0 +1,25 @@
+# mhgsiR Development Roadmap
+
+This document outlines the planned features for future versions of the mhgsiR package.
+
+## Version 1.0 (Core Functionality)
+
+- [x] `simulate_data()`: Robust, reproducible simulation engine.
+- [x] `plot_scenarios()`: Flexible visualization utility.
+- [x] `extract_fingerprint()`: Core function for calculating the 5D macro-fingerprint.
+- [ ] `diagnose_mechanism()`: The main inference function to match observed to theoretical fingerprints.
+- [ ] Core documentation and a tutorial vignette.
+
+## Version 2.0 (Planned Enhancements for Empirical Data)
+
+The next major version will focus on enhancing the robustness and flexibility of the framework for analyzing real-world, empirical datasets.
+
+- **Data Transformation:** The `extract_fingerprint()` function will include an `abundance_transform` argument (e.g., "log", "sqrt", "none") to better handle non-linear relationships and skewed data distributions.
+- **Statistical Warnings:** The package will include checks for low sample sizes (e.g., `n < 5` per group) and issue warnings to prevent users from over-interpreting results from underpowered data.
+- **Flexible Output Formats:** Core functions will gain the option to return data in a "long" (tidy) format, which is more convenient for advanced visualization with packages like `ggplot2` and `ggdist`.
+- **Expanded Models:** The simulation and diagnostic engine will be expanded to include optional non-linear models (e.g., saturating curves) in addition to the default linear models.
+- **Concordance Analysis & Automated Warnings:** The `diagnose_mechanism()` function will be enhanced with a wrapper or a special mode that runs all available similarity methods. If the top-ranked mechanism is inconsistent across methods, the function will issue a warning, alerting the user to the ambiguity and providing guidance on interpretation. This will help prevent users from over-interpreting the result of a single, default metric.
+- **Data Transformation:** (Your other excellent ideas...)
+- **Statistical Warnings:**
+- **Flexible Output Formats:**
+- **Expanded Models:**
