@@ -8,10 +8,10 @@
 #'
 #' @keywords internal
 .mhgsi_metric_names <- c(
-  "Abundance–Fitness Slope",
+  "Abundance_Fitness Slope",
   "Stress Response",
   "Interaction Strength (R-squared)",
-  "Diversity–Fitness Link",
+  "Diversity_Fitness Link",
   "Functional Redundancy"
 )
 
