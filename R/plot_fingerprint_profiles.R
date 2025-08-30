@@ -18,8 +18,8 @@ plot_fingerprint_profiles <- function(fingerprint_df) {
   # --- Input Validation & Preparation ---
   # (This part is correct and remains the same)
   metric_cols <- c(
-    "Abundance–Fitness Slope", "Stress Response", "Interaction Strength (R-squared)",
-    "Diversity–Fitness Link", "Functional Redundancy"
+    "Abundance_Fitness Slope", "Stress Response", "Interaction Strength (R-squared)",
+    "Diversity_Fitness Link", "Functional Redundancy"
   )
   if (!all(metric_cols %in% names(fingerprint_df))) {
     stop("Input must contain the 5 core fingerprint metric columns.")
