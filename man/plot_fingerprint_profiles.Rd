@@ -52,8 +52,8 @@ follows the sign of the original value.
 \examples{
 # A: use reference amplitude so panels are comparable
 A_ref <- max(abs(unlist(reference_fingerprints[
-  , c("Abundance–Fitness Slope","Stress Response",
-      "Interaction Strength (R-squared)","Diversity–Fitness Link",
+  , c("Abundance_Fitness Slope","Stress Response",
+      "Interaction Strength (R_squared)","Diversity_Fitness Link",
       "Functional Redundancy")]
 )), na.rm = TRUE)
 plot_fingerprint_profiles(reference_fingerprints, scale_A = A_ref)
