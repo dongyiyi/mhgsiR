@@ -2,24 +2,62 @@
 % Please edit documentation in R/plot_fingerprint_profiles.R
 \name{plot_fingerprint_profiles}
 \alias{plot_fingerprint_profiles}
-\title{Plot Fingerprint Profiles as Bar Charts (Definitive, Final Version)}
+\title{Plot fingerprint profiles as faceted bars (robust scaling, NA-safe)}
 \usage{
-plot_fingerprint_profiles(fingerprint_df)
+plot_fingerprint_profiles(
+  fingerprint_df,
+  scale_A = NULL,
+  title = "Each metric is rescaled to [-1,1] with 0 anchored; NA shown in grey",
+  metric_cols = NULL
+)
 }
 \arguments{
-\item{fingerprint_df}{A data frame from `extract_fingerprint()` or `extract_fingerprint_batch()`.}
+\item{fingerprint_df}{A data frame returned by `extract_fingerprint()` or
+a stacked set of fingerprints (e.g., `reference_fingerprints`).
+It should contain the five metric columns (any of the common aliases
+are accepted; see below).}
+
+\item{scale_A}{Optional numeric. If provided, all panels are scaled by the
+same amplitude `A` (recommended: compute once from your reference set and
+pass it in so case/reference are perfectly comparable). If `NULL`,
+the function computes `A` from the supplied data only.}
+
+\item{title}{Character. Plot title.}
+
+\item{metric_cols}{Optional character vector of the five preferred metric
+  column names to draw (defaults are shown below). If `NULL`, the function
+  will use these defaults and auto-rename common legacy aliases in
+  `fingerprint_df` to match.
+
+Preferred metric names (defaults):
+\itemize{
+  \item Abundance–Fitness Slope
+  \item Stress Response
+  \item Interaction Strength (R-squared)
+  \item Diversity–Fitness Link
+  \item Functional Redundancy
+}
+Accepted legacy aliases include e.g. \code{"Abundance_Fitness Slope"},
+\code{"Interaction Strength (R_squared)"}, \code{"Functional_Redundancy"}, etc.}
 }
 \value{
-A ggplot2 object.
+A \pkg{ggplot2} object.
 }
 \description{
-Plot Fingerprint Profiles as Bar Charts (Definitive, Final Version)
-}
-\details{
-This function visualizes fingerprints as faceted bar charts. It uses a robust
-global scaling method and now correctly handles `Inf` values, representing them
-as the maximum on the scaled axis.
+Visualize one or more fingerprints as faceted bar charts, with a common
+rescaled axis in [-1, 1]. Missing metrics (NA) are drawn as grey "ghost"
+bars at 0 and do not affect the scaling. The direction (left/right) always
+follows the sign of the original value.
 }
 \examples{
-plot_fingerprint_profiles(reference_fingerprints)
+# A: use reference amplitude so panels are comparable
+A_ref <- max(abs(unlist(reference_fingerprints[
+  , c("Abundance–Fitness Slope","Stress Response",
+      "Interaction Strength (R-squared)","Diversity–Fitness Link",
+      "Functional Redundancy")]
+)), na.rm = TRUE)
+plot_fingerprint_profiles(reference_fingerprints, scale_A = A_ref)
+
+# B: plot a single case using the same A
+# plot_fingerprint_profiles(fp_case, scale_A = A_ref)
 }
